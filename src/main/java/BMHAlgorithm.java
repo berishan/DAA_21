@@ -1,4 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class BMHAlgorithm {
 
@@ -27,7 +30,6 @@ public class BMHAlgorithm {
         textLength = text.length();
         textFirstPosition = 0;
         textLastPosition = textFirstPosition + patternPosition;
-//        System.out.println("Pattern length:" + patternLength);
         if (textLength < 1) {
             throw new Exception("Text's length must be greater than 1!");
         }
@@ -45,22 +47,17 @@ public class BMHAlgorithm {
                 if(patternPosition==0){
                     return textFirstPosition;
                 }
-
             } else {
               int shift = calculateShift(text.charAt(textLastPosition), table);
               textFirstPosition = textFirstPosition + shift;
               patternPosition = patternLength -1;
               textLastPosition = textFirstPosition + patternPosition;
-//                System.out.println("Shift:"+shift);
               i = 0;
             }
-//            System.out.println("Text first position:" + textFirstPosition);
-//            System.out.println("Text last position:" + textLastPosition);
-//            System.out.println("Pattern position:" + patternPosition);
-
         }
         return -1;
     }
+
 
     private int calculateShift(char charAt, HashMap<Character, Integer> table) {
         if(table.containsKey(charAt)){
